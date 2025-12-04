@@ -17,6 +17,8 @@ interface Project {
   technologies: string[];
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 export default function Home() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -27,8 +29,8 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [profileRes, projectsRes] = await Promise.all([
-          fetch('http://localhost:8000/api/profile/'),
-          fetch('http://localhost:8000/api/projects/')
+          fetch(`${API_URL}/api/profile/`),
+          fetch(`${API_URL}/api/projects/`)
         ]);
 
         if (!profileRes.ok || !projectsRes.ok) {
@@ -64,7 +66,7 @@ export default function Home() {
         <div className="text-center">
           <div className="text-xl text-red-600 dark:text-red-400 mb-4">Error: {error}</div>
           <div className="text-sm text-slate-600 dark:text-slate-400">
-            Make sure the Django backend is running on http://localhost:8000
+            Make sure the Django backend is running on {API_URL}
           </div>
         </div>
       </div>

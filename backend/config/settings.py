@@ -20,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# NOTE: This is a development key. Use environment variables in production.
 SECRET_KEY = 'django-insecure-opa5#kc-3x%+^a8hxv97zt975wo*%gicq0bsskac@i9w2q=p@s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -127,6 +128,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # REST Framework settings
+# NOTE: Using AllowAny for development. In production, implement proper
+# authentication and authorization (e.g., TokenAuthentication, SessionAuthentication)
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',

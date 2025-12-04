@@ -54,7 +54,13 @@ cd frontend
 npm install
 ```
 
-3. Start the development server:
+3. Create environment configuration (optional):
+```bash
+cp .env.local.example .env.local
+```
+Edit `.env.local` to configure the backend API URL if needed.
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
