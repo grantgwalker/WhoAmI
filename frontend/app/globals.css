@@ -1,26 +1,200 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	/* Background colors */
+	--background: #ffffff;
+	--foreground: #171717;
+
+	/* Primary colors - used for main elements */
+	--primary: #2563eb; /* blue-600 */
+	--primary-hover: #1d4ed8; /* blue-700 */
+	--primary-light: #dbeafe; /* blue-100 */
+	--primary-dark: #1e3a8a; /* blue-900 */
+
+	/* Accent colors - used for highlights and emphasis */
+	--accent: #2563eb; /* blue-600 */
+	--accent-hover: #1d4ed8; /* blue-700 */
+
+	/* Surface colors - used for cards and containers */
+	--surface: #ffffff;
+	--surface-hover: #f8fafc; /* slate-50 */
+
+	/* Text colors */
+	--text-primary: #0f172a; /* slate-900 */
+	--text-secondary: #475569; /* slate-600 */
+	--text-tertiary: #94a3b8; /* slate-400 */
+
+	/* Border colors */
+	--border: #e2e8f0; /* slate-200 */
+	--border-hover: #cbd5e1; /* slate-300 */
+
+	/* Gradient colors */
+	--gradient-from: #f8fafc; /* slate-50 */
+	--gradient-to: #f1f5f9; /* slate-100 */
+
+	/* Orange highlight colors */
+	--highlight: #f97316; /* orange-500 */
+	--highlight-light: #fed7aa; /* orange-200 */
+	--highlight-dark: #ea580c; /* orange-600 */
+
+	/* Shadow colors */
+	--shadow-orange: rgba(
+		249,
+		115,
+		22,
+		0.3
+	); /* orange-500 with opacity */
+	--shadow-orange-lg: rgba(
+		249,
+		115,
+		22,
+		0.2
+	);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		/* Background colors */
+		--background: #0a0a0a;
+		--foreground: #ededed;
+
+		/* Primary colors - dark mode */
+		--primary: #3b82f6; /* blue-500 */
+		--primary-hover: #2563eb; /* blue-600 */
+		--primary-light: #1e3a8a; /* blue-900 */
+		--primary-dark: #1e40af; /* blue-800 */
+
+		/* Accent colors - dark mode */
+		--accent: #60a5fa; /* blue-400 */
+		--accent-hover: #3b82f6; /* blue-500 */
+
+		/* Surface colors - dark mode */
+		--surface: #1e293b; /* slate-800 */
+		--surface-hover: #334155; /* slate-700 */
+
+		/* Text colors - dark mode */
+		--text-primary: #f8fafc; /* slate-50 */
+		--text-secondary: #cbd5e1; /* slate-300 */
+		--text-tertiary: #64748b; /* slate-500 */
+
+		/* Border colors - dark mode */
+		--border: #334155; /* slate-700 */
+		--border-hover: #475569; /* slate-600 */
+
+		/* Gradient colors - dark mode */
+		--gradient-from: #0f172a; /* slate-900 */
+		--gradient-to: #1e293b; /* slate-800 */
+
+		/* Orange highlight colors - dark mode */
+		--highlight: #fb923c; /* orange-400 */
+		--highlight-light: #7c2d12; /* orange-900 */
+		--highlight-dark: #f97316; /* orange-500 */
+
+		/* Shadow colors - dark mode */
+		--shadow-orange: rgba(
+			251,
+			146,
+			60,
+			0.4
+		);
+		--shadow-orange-lg: rgba(
+			251,
+			146,
+			60,
+			0.25
+		);
+	}
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: Arial, Helvetica,
+		sans-serif;
+}
+
+/* Custom utility classes for easy color adjustments */
+.bg-primary {
+	background-color: var(--primary);
+}
+
+.bg-primary-hover:hover {
+	background-color: var(
+		--primary-hover
+	);
+}
+
+.bg-surface {
+	background-color: var(--surface);
+}
+
+.text-primary {
+	color: var(--text-primary);
+}
+
+.text-secondary {
+	color: var(--text-secondary);
+}
+
+.border-custom {
+	border-color: var(--border);
+}
+
+/* Orange highlight utilities */
+.highlight-border {
+	border: 2px solid var(--highlight);
+}
+
+.highlight-border-left {
+	border-left: 4px solid
+		var(--highlight);
+}
+
+.highlight-shadow {
+	box-shadow: 0 4px 6px -1px var(--shadow-orange),
+		0 2px 4px -2px var(--shadow-orange);
+}
+
+.highlight-shadow-lg {
+	box-shadow: 0 10px 15px -3px var(--shadow-orange-lg),
+		0 4px 6px -4px var(--shadow-orange-lg);
+}
+
+.highlight-shadow-xl {
+	box-shadow: 0 20px 25px -5px var(--shadow-orange-lg),
+		0 8px 10px -6px var(--shadow-orange-lg);
+}
+
+/* Hover effect with orange glow */
+.hover-orange-glow {
+	transition: box-shadow 0.3s ease,
+		border-color 0.3s ease;
+}
+
+.hover-orange-glow:hover {
+	box-shadow: 0 10px 20px -5px var(--shadow-orange),
+		0 0 15px var(--shadow-orange);
+	border-color: var(--highlight);
+}
+
+/* Background highlight utilities */
+.bg-highlight {
+	background-color: var(--highlight);
+}
+
+.bg-highlight-light {
+	background-color: var(
+		--highlight-light
+	);
+}
+
+.text-highlight {
+	color: var(--highlight);
 }

@@ -153,7 +153,7 @@ export default function Home() {
 				{/* Profile Section */}
 				{profile && (
 					<section className="mb-16">
-						<div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12">
+						<div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 highlight-border-left hover-orange-glow">
 							<h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-3">
 								{profile.name}
 							</h1>
@@ -185,7 +185,7 @@ export default function Home() {
 							<div>
 								<a
 									href={`mailto:${profile.email}`}
-									className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+									className="inline-flex items-center px-6 py-3 bg-highlight hover:bg-highlight-dark text-white font-medium rounded-lg transition-colors highlight-shadow"
 								>
 									Contact Me
 								</a>
@@ -203,7 +203,7 @@ export default function Home() {
 						{experience.map((exp) => (
 							<div
 								key={exp.id}
-								className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+								className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 hover-orange-glow highlight-shadow"
 							>
 								<div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
 									<div>
@@ -247,7 +247,7 @@ export default function Home() {
 						{projects.map((project) => (
 							<div
 								key={project.id}
-								className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+								className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 hover-orange-glow highlight-shadow-lg"
 							>
 								<h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
 									{project.title}
@@ -272,7 +272,7 @@ export default function Home() {
 										href={project.link}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm transition-colors"
+										className="inline-flex items-center text-highlight hover:text-highlight-dark font-medium text-sm transition-colors"
 									>
 										View on GitHub →
 									</a>
