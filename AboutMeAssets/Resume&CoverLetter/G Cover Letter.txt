@@ -1,0 +1,34 @@
+Dear Hiring Manager,
+I am a passionate software engineer who thrives at the intersection of technology and
+human-centered design. With experience in both enterprise and startup environments, I
+excel at defining requirements, collaborating across disciplines, and delivering impactful
+solutions that improve real-world processes.
+At Tektronix, I worked on an internal innovation team focused on modernizing
+manufacturing workflows through software solutions. As the sole software developer, I
+led projects end-to-end. My team started by identifying process inefficiencies to
+designing and deploying user-centered automation tools. My work spanned a range of
+technologies, including JavaScript, Java, Thymeleaf, Spring Boot, VBA, RPA,
+Copilot, Azure, PowerAutomate and PowerBI. Projects included front-end redesigns
+of internal tools, process automation through PowerAutomate and RPA, and data
+visualization pipelines. In addition to technical delivery, I mentored three interns,
+coordinated project timelines, and led two PowerBI learning cohorts to upskill peers
+across departments.
+At Machine Research, a software startup, I joined as a full stack developer collaborating
+directly with senior engineers, leadership, and cross-functional teams. I developed and
+enhanced Angular front-end components using TypeScript, HTML, and CSS,
+optimized backend APIs with AWS Amplify, and led schema updates to DynamoDB
+that paved the way for additional user functionality. I also mentored an intern,
+contributing to both individual and team growth.
+At FORCEAI, I utilized my skills to rapidly iterate with agentic coding while analyzing
+and verifying the output to build an agent OS. As a full stack developer I designed the
+React front end with TypeScript and Tailwind to tailor the users needs and refined the
+Python and Rust backend for greater agent-to-agent and agent-to-user communication
+reliability. Unfortunately, due to funding issues, the startup could not renew my contract.
+Through these roles, I’ve developed a deep appreciation for how thoughtful design and
+clear communication enable successful software delivery. I’ve learned to balance
+autonomy and collaboration, take initiative in ambiguous environments, and ensure
+solutions are both technically sound and user-focused. I’m excited about opportunities
+where I can continue building software that makes a tangible difference. I would
+welcome the chance to discuss how I can contribute to your team’s goals.
+Sincerely,
+Grant Walker
