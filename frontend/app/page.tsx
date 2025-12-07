@@ -169,7 +169,10 @@ export default function Home() {
 			<footer className="mt-16 py-8 text-center text-slate-600 dark:text-slate-400">
 				<p>
 					Built with React, Next.js, and
-					Django
+					Django 
+				</p>
+				<p>
+					(I know it is a bit overkill for a personal website, but I wanted the practice!)
 				</p>
 			</footer>
 		</div>

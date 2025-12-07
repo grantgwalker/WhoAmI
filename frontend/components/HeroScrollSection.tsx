@@ -27,11 +27,22 @@ export const HeroScrollSection = ({ profile }: HeroScrollSectionProps) => {
 	// Map scroll progress (0 -> 1) to animation values
 	const opacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
 	const scale = useTransform(scrollYProgress, [0.3, 0.8], [0.8, 1]);
-	const x = useTransform(scrollYProgress, [0.1, 1], ["0%", "-50%"]); // Example: slide text
+	const x1 = useTransform(scrollYProgress, [0.1, 1], ["0%", "-50%"]); // First line
+	const x2 = useTransform(scrollYProgress, [0.2, 1], ["10%", "-40%"]); // Second line (delayed start)
+	const x3 = useTransform(scrollYProgress, [0.3, 1], ["20%", "-30%"]); // Third line (more delayed)
 
 	return (
 		// The Container: Needs extra height (e.g., 300vh) to allow scrolling "time"
-		<section ref={targetRef} className="h-[300vh] bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+		<section 
+			ref={targetRef} 
+			className="h-[300vh] bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 relative"
+			style={{
+				backgroundImage: "url('/WolfsonSunrise.jpeg')",
+				backgroundSize: 'cover',
+				backgroundPosition: 'center',
+				backgroundAttachment: 'fixed'
+			}}
+		>
 
 			{/* Sticky Content: This stays fixed while the parent scrolls */}
 			<div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
@@ -83,15 +94,42 @@ export const HeroScrollSection = ({ profile }: HeroScrollSectionProps) => {
 					</motion.div>
 				)}
 
-				{/* Animated Element 2: Background Text sliding */}
+				{/* Animated Element 2: Background Text sliding - Stacked 3 lines */}
 				<motion.p
-					style={{ x }}
-					className="text-[200px] font-bold whitespace-nowrap opacity-20 absolute text-slate-300 dark:text-slate-600"
+					style={{ x: x1 }}
+					className="text-[50px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
+				>
+					DESIGN • CODE • EXPERIENCE
+				</motion.p>
+
+				<motion.p
+					style={{ x: x1, top: '0px' }}
+					className="text-[200px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
+				>
+					DESIGN • CODE • EXPERIENCE
+				</motion.p>
+
+				<motion.p
+					style={{ x: x2, top: '200px' }}
+					className="text-[200px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
 				>
 					EXPERIENCE • DESIGN • CODE
 				</motion.p>
 
-			</div>
+				<motion.p
+					style={{ x: x3, top: '400px' }}
+					className="text-[200px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
+				>
+					CODE • EXPERIENCE • DESIGN
+				</motion.p>
+				
+				<motion.p
+					style={{ x: x3, top: '600px' }}
+					className="text-[200px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
+				>
+					DESIGN • CODE • EXPERIENCE
+				</motion.p>
+				</div>
 		</section>
 	);
 };
