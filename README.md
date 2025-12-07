@@ -41,27 +41,28 @@ WhoAmI/
 - Node.js 20+ and npm
 - Python 3.12+
 - pip
+- PowerShell (recommended) or Command Prompt
 
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
-```bash
+```powershell
 cd frontend
 ```
 
 2. Install dependencies:
-```bash
+```powershell
 npm install
 ```
 
 3. Create environment configuration (optional):
-```bash
-cp .env.local.example .env.local
+```powershell
+Copy-Item .env.local.example .env.local
 ```
 Edit `.env.local` to configure the backend API URL if needed.
 
 4. Start the development server:
-```bash
+```powershell
 npm run dev
 ```
 
@@ -70,28 +71,28 @@ The frontend will be available at `http://localhost:3000`
 ### Backend Setup
 
 1. Navigate to the backend directory:
-```bash
+```powershell
 cd backend
 ```
 
 2. Create and activate a virtual environment:
 ```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python -m venv venv
+venv\Scripts\activate
 ```
 
 3. Install dependencies:
-```bash
+```powershell
 pip install -r requirements.txt
 ```
 
 4. Run migrations:
-```bash
+```powershell
 python manage.py migrate
 ```
 
 5. Start the development server:
-```bash
+```powershell
 python manage.py runserver
 ```
 
@@ -129,7 +130,7 @@ The backend API will be available at `http://localhost:8000`
 
 ### Frontend (Vercel)
 The Next.js app can be easily deployed to Vercel:
-```bash
+```powershell
 npm run build
 ```
 
