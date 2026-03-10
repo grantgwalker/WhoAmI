@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "npm run build && cd ../infra ; npm run deploy:frontend",
+    "cdk:bootstrap": "cd ../infra ; npm run cdk:bootstrap",
+    "cdk:deploy": "cd ../infra ; npm run deploy:frontend",
+    "cdk:deploy:backend": "cd ../infra ; npm run deploy:backend"
   },
   "dependencies": {
     "framer-motion": "^12.23.25",
@@ -20,9 +24,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "aws-cdk-lib": "^2.232.1",
+    "constructs": "^10.4.3",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }

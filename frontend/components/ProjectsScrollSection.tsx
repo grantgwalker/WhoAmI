@@ -3,19 +3,10 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 
-interface Project {
-	id: number;
-	title: string;
-	description: string;
-	technologies: string[];
-	link?: string;
-}
+import { projects as projectsData } from "@/app/data/projects";
 
-interface ProjectsScrollSectionProps {
-	projects: Project[];
-}
-
-export const ProjectsScrollSection = ({ projects }: ProjectsScrollSectionProps) => {
+export const ProjectsScrollSection = () => {
+	const projects = projectsData;
 	const targetRef = useRef(null);
 
 	const { scrollYProgress } = useScroll({

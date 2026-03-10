@@ -3,20 +3,10 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 
-interface Experience {
-	id: number;
-	company: string;
-	title: string;
-	period: string;
-	description: string;
-	technologies: string[];
-}
+import { experience as experienceData } from "@/app/data/experience";
 
-interface ExperienceScrollSectionProps {
-	experience: Experience[];
-}
-
-export const ExperienceScrollSection = ({ experience }: ExperienceScrollSectionProps) => {
+export const ExperienceScrollSection = () => {
+	const experience = experienceData;
 	const targetRef = useRef(null);
 
 	const { scrollYProgress } = useScroll({

@@ -3,19 +3,10 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 
-interface Profile {
-	name: string;
-	title: string;
-	bio: string;
-	skills: string[];
-	email: string;
-}
+import { profile as profileData } from "@/app/data/profile";
 
-interface HeroScrollSectionProps {
-	profile: Profile | null;
-}
-
-export const HeroScrollSection = ({ profile }: HeroScrollSectionProps) => {
+export const HeroScrollSection = () => {
+	const profile = profileData;
 	const targetRef = useRef(null);
 
 	// Track the scroll progress of this specific container (0 to 1)
@@ -53,7 +44,7 @@ export const HeroScrollSection = ({ profile }: HeroScrollSectionProps) => {
 						style={{ scale, opacity }}
 						className="absolute w-full max-w-4xl z-10 p-8"
 					>
-						<div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 highlight-border-left hover-orange-glow">
+						<div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 highlight-border-left hover-orange-glow opacity-95 shadow-lg">
 							<h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-3">
 								{profile.name}
 							</h1>
@@ -95,39 +86,39 @@ export const HeroScrollSection = ({ profile }: HeroScrollSectionProps) => {
 				)}
 
 				{/* Animated Element 2: Background Text sliding - Stacked 3 lines */}
-				<motion.p
-					style={{ x: x1 }}
+				<p
+					style={{}}
 					className="text-[50px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
 				>
-					DESIGN • CODE • EXPERIENCE
+					Human Centered Design
+				</p>
+
+				<motion.p
+					style={{ x: x2, top: '0px' }}
+					className="text-[150px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
+				>
+					AUTOMATION • DEVELOPMENT • PROJECT MANAGEMENT
 				</motion.p>
 
 				<motion.p
-					style={{ x: x1, top: '0px' }}
-					className="text-[200px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
+					style={{ x: x3, top: '200px' }}
+					className="text-[150px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
 				>
-					DESIGN • CODE • EXPERIENCE
+					MENTORSHIP • AUTOMATION • MOCKUPS
 				</motion.p>
 
 				<motion.p
-					style={{ x: x2, top: '200px' }}
-					className="text-[200px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
+					style={{ x: x2, top: '400px' }}
+					className="text-[150px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
 				>
-					EXPERIENCE • DESIGN • CODE
-				</motion.p>
-
-				<motion.p
-					style={{ x: x3, top: '400px' }}
-					className="text-[200px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
-				>
-					CODE • EXPERIENCE • DESIGN
+					COMMUNICATION • COMMUNICATION • COMMUNICATION
 				</motion.p>
 				
 				<motion.p
 					style={{ x: x3, top: '600px' }}
-					className="text-[200px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
+					className="text-[150px] font-bold whitespace-nowrap opacity-40 absolute text-slate-300 dark:text-slate-600"
 				>
-					DESIGN • CODE • EXPERIENCE
+					FULL STACK • COMMUNICATION • AUTOMATION
 				</motion.p>
 				</div>
 		</section>

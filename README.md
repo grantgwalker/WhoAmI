@@ -1,36 +1,30 @@
 # WhoAmI - Personal Website
 
-A modern personal website built with React, Next.js, and Python Django backend. This project showcases a full-stack web application with a responsive frontend and a RESTful API backend.
+A modern personal website built with React and Next.js. The app is now **fully static** and deployed as a statically exported site (no backend service required), which keeps hosting simple and cost‑effective.
 
 ## 🚀 Tech Stack
 
 ### Frontend
 - **React** - UI library for building interactive interfaces
-- **Next.js** - React framework with server-side rendering
+- **Next.js** - Static export using the App Router
 - **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first CSS framework
-
-### Backend
-- **Python 3.12** - Programming language
-- **Django 6.0** - Web framework
-- **Django REST Framework** - API toolkit
-- **django-cors-headers** - CORS support
+- **Tailwind CSS** - Utility-first CSS framework (v4)
 
 ## 📁 Project Structure
 
 ```
 WhoAmI/
-├── frontend/          # Next.js React application
+├── frontend/          # Next.js React application (statically exported)
 │   ├── app/          # Next.js app directory
 │   ├── components/   # Reusable React components
 │   ├── public/       # Static assets
 │   └── package.json  # Frontend dependencies
 │
-├── backend/          # Django REST API
-│   ├── api/         # Django app for API endpoints
-│   ├── config/      # Django project settings
-│   ├── manage.py    # Django management script
-│   └── requirements.txt  # Backend dependencies
+├── backend/          # (Legacy) Django API – no longer used
+│   ├── api/         # Django app for API endpoints (archived)
+│   ├── config/      # Django project settings (archived)
+│   ├── manage.py    # Django management script (archived)
+│   └── requirements.txt  # Backend dependencies (archived)
 │
 └── README.md        # This file
 ```
@@ -55,48 +49,12 @@ cd frontend
 npm install
 ```
 
-3. Create environment configuration (optional):
-```powershell
-Copy-Item .env.local.example .env.local
-```
-Edit `.env.local` to configure the backend API URL if needed.
-
-4. Start the development server:
+3. Start the development server:
 ```powershell
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-```powershell
-cd backend
-```
-
-2. Create and activate a virtual environment:
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-3. Install dependencies:
-```powershell
-pip install -r requirements.txt
-```
-
-4. Run migrations:
-```powershell
-python manage.py migrate
-```
-
-5. Start the development server:
-```powershell
-python manage.py runserver
-```
-
-The backend API will be available at `http://localhost:8000`
+The frontend will be available at `http://localhost:3000`.
 
 ## 🎯 Features
 
@@ -104,13 +62,7 @@ The backend API will be available at `http://localhost:8000`
 - **Projects Showcase** - Lists projects with descriptions and technologies used
 - **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
 - **Dark Mode Support** - Automatic dark mode based on system preferences
-- **RESTful API** - Clean API architecture for data management
 - **Type Safety** - TypeScript for frontend type checking
-
-## 📡 API Endpoints
-
-- `GET /api/profile/` - Retrieve profile information
-- `GET /api/projects/` - Get list of projects
 
 ## 🧪 Development
 
@@ -120,25 +72,11 @@ The backend API will be available at `http://localhost:8000`
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 
-### Backend Commands
-- `python manage.py runserver` - Start development server
-- `python manage.py migrate` - Apply database migrations
-- `python manage.py createsuperuser` - Create admin user
-- `python manage.py test` - Run tests
-
 ## 🚀 Deployment
 
-### Frontend (Vercel)
-The Next.js app can be easily deployed to Vercel:
-```powershell
-npm run build
-```
+The statically exported Next.js app can be deployed to any static host (S3 + CloudFront via CDK, Vercel static export, Netlify, etc.).
 
-### Backend (Railway/Heroku/DigitalOcean)
-1. Set environment variables
-2. Configure production database
-3. Set `DEBUG=False` in settings
-4. Configure static files serving
+For AWS S3 + CloudFront via CDK, see `infra/README.md`.
 
 ## 📝 License
 
@@ -147,3 +85,7 @@ This project is open source and available under the MIT License.
 ## 👤 Author
 
 Your Name - contact@example.com
+
+---
+
+> Note: The `backend/` Django project is now considered **legacy/archived** and is not used in the current deployment. You can safely ignore or remove it if you no longer need a dynamic API.

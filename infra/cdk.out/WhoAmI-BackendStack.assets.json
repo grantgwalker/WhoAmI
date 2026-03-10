@@ -1,0 +1,21 @@
+{
+  "version": "48.0.0",
+  "files": {
+    "756cfae8c9d8750394ece360bde776ae6abcdb4ea5613f042b4ddf3631019abf": {
+      "displayName": "WhoAmI-BackendStack Template",
+      "source": {
+        "path": "WhoAmI-BackendStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "975050056035-us-east-1-edb8f434": {
+          "bucketName": "cdk-hnb659fds-assets-975050056035-us-east-1",
+          "objectKey": "756cfae8c9d8750394ece360bde776ae6abcdb4ea5613f042b4ddf3631019abf.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::975050056035:role/cdk-hnb659fds-file-publishing-role-975050056035-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

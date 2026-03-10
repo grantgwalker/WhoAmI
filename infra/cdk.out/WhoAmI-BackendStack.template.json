@@ -1,0 +1,224 @@
+{
+ "Resources": {
+  "AppRunnerEcrAccessRole23CA5BBD": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "apprunner.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Role that App Runner uses to pull images from ECR",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WhoAmI-BackendStack/AppRunnerEcrAccessRole/Resource"
+   }
+  },
+  "AppRunnerEcrAccessRoleDefaultPolicy57845EDF": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "iam:PassRole",
+       "Condition": {
+        "StringEquals": {
+         "iam:PassedToService": "apprunner.amazonaws.com"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "AppRunnerEcrAccessRole23CA5BBD",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AppRunnerEcrAccessRoleDefaultPolicy57845EDF",
+    "Roles": [
+     {
+      "Ref": "AppRunnerEcrAccessRole23CA5BBD"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WhoAmI-BackendStack/AppRunnerEcrAccessRole/DefaultPolicy/Resource"
+   }
+  },
+  "AppRunnerInstanceRole96A5A063": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "tasks.apprunner.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Role for the App Runner service instance to assume for runtime tasks",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECR"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WhoAmI-BackendStack/AppRunnerInstanceRole/Resource"
+   }
+  },
+  "BackendAppRunnerService": {
+   "Type": "AWS::AppRunner::Service",
+   "Properties": {
+    "HealthCheckConfiguration": {
+     "HealthyThreshold": 1,
+     "Interval": 10,
+     "Path": "/api/health/",
+     "Protocol": "HTTP",
+     "Timeout": 5,
+     "UnhealthyThreshold": 5
+    },
+    "InstanceConfiguration": {
+     "InstanceRoleArn": {
+      "Fn::GetAtt": [
+       "AppRunnerInstanceRole96A5A063",
+       "Arn"
+      ]
+     }
+    },
+    "ServiceName": "whoami-backend",
+    "SourceConfiguration": {
+     "AuthenticationConfiguration": {
+      "AccessRoleArn": {
+       "Fn::GetAtt": [
+        "AppRunnerEcrAccessRole23CA5BBD",
+        "Arn"
+       ]
+      }
+     },
+     "AutoDeploymentsEnabled": true,
+     "ImageRepository": {
+      "ImageConfiguration": {
+       "Port": "8000",
+       "RuntimeEnvironmentVariables": [
+        {
+         "Name": "DJANGO_SETTINGS_MODULE",
+         "Value": "config.settings"
+        },
+        {
+         "Name": "DEBUG",
+         "Value": "False"
+        },
+        {
+         "Name": "ALLOWED_HOSTS",
+         "Value": "*"
+        }
+       ]
+      },
+      "ImageIdentifier": "975050056035.dkr.ecr.us-east-1.amazonaws.com/whoami-backend:latest",
+      "ImageRepositoryType": "ECR"
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WhoAmI-BackendStack/BackendAppRunnerService"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/yWLWw6DIBAAz+I/bgPtDTxAGzxAQ3FNVnEhPDQN4e5N9WtmPkaBuiuQnTlSb6e1d/SBOmZjV2GO9K5kNqjaOxTDzCdf3pH9/vOyJkwIsTBjhGHmEeNOFpvQmHyJ9hyfJYeSm2A/ISzptqsHSAmyWxJRHwtn2hD0xR/6EvW5kwAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "WhoAmI-BackendStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "BackendRepositoryUri": {
+   "Value": "975050056035.dkr.ecr.us-east-1.amazonaws.com/whoami-backend"
+  },
+  "AppRunnerServiceName": {
+   "Value": "whoami-backend"
+  },
+  "AppRunnerServiceUrl": {
+   "Value": {
+    "Fn::GetAtt": [
+     "BackendAppRunnerService",
+     "ServiceUrl"
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
